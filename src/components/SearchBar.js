@@ -1,14 +1,25 @@
-function SearchBar(props) {
+import { useState } from 'react';
+import './SearchBar.css'
+
+function SearchBar({ onSubmit }) {
+
+    const [ term, setTerm ] = useState("");
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        onSubmit(term);
 
     };
 
+    const handleChange = (event) => {
+        setTerm(event.target.value);
+    };
+
     return (
-        <div>
+        <div className='search-bar'>
             <form onSubmit={handleFormSubmit}>
-                <input />
+                <label>Enter search term: </label>
+                <input value={term} onChange={handleChange}/>
             </form>
         </div>
     );
